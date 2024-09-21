@@ -53,21 +53,27 @@ def load_data(node_feature_path, edge_incidence_path):
 
 
 
-
-
 # Function to sample a connected neighborhood subgraph
-def sample_neigh(graph, size):
+def sample_neigh(graph, size, anchor_node=None):
     import random
     from scipy import stats
     
     # Use float instead of np.float
-    ps = np.array([len(graph)], dtype=float)  
+    ps = np.array([len(graph)], dtype=float)
     ps /= np.sum(ps)
     dist = stats.rv_discrete(values=(np.arange(len(ps)), ps))
 
     while True:
-        idx = dist.rvs()  # Select graph
-        start_node = random.choice(list(graph.nodes))  # Random starting node
+        if anchor_node is None:
+            # If no anchor node is provided, choose a random starting node
+            idx = dist.rvs()  # Select graph
+            start_node = random.choice(list(graph.nodes))  # Random starting node
+        else:
+            # If an anchor node is provided, use it as the starting point
+            if anchor_node not in graph.nodes:
+                raise ValueError(f"Anchor node '{anchor_node}' not found in the graph.")
+            start_node = anchor_node
+        
         neigh = [start_node]
         frontier = list(set(graph.neighbors(start_node)) - set(neigh))
         visited = set([start_node])
@@ -83,3 +89,35 @@ def sample_neigh(graph, size):
 
         if len(neigh) == size:
             return graph.subgraph(neigh), neigh
+
+
+# Function to sample a connected neighborhood subgraph
+# def sample_neigh(graph, size):
+#     import random
+#     from scipy import stats
+    
+#     # Use float instead of np.float
+#     ps = np.array([len(graph)], dtype=float)  
+#     ps /= np.sum(ps)
+#     dist = stats.rv_discrete(values=(np.arange(len(ps)), ps))
+
+#     while True:
+#         idx = dist.rvs()  # Select graph
+#         start_node = random.choice(list(graph.nodes))  # Random starting node
+#         neigh = [start_node]
+#         frontier = list(set(graph.neighbors(start_node)) - set(neigh))
+#         visited = set([start_node])
+
+#         # Perform breadth-first search to sample neighbors
+#         while len(neigh) < size and frontier:
+#             new_node = random.choice(list(frontier))
+#             assert new_node not in neigh
+#             neigh.append(new_node)
+#             visited.add(new_node)
+#             frontier += list(graph.neighbors(new_node))
+#             frontier = [x for x in frontier if x not in visited]
+
+#         if len(neigh) == size:
+#             return graph.subgraph(neigh), neigh
+
+
