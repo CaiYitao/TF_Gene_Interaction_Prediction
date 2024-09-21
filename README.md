@@ -1,7 +1,7 @@
-# TF_gene_interaction_prediction for PHD Retreat
+# Transcription Factors and Genes Interaction Prediction for PHD Retreat project
 
 
-create the working environment by running
+Create the working environment by running
 
 ```python
 
