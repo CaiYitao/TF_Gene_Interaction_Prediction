@@ -1,0 +1,49 @@
+{
+    "os": "macOS-14.4-arm64-arm-64bit",
+    "python": "3.12.4",
+    "heartbeatAt": "2024-10-09T17:51:29.729224",
+    "startedAt": "2024-10-09T17:51:29.120665",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/caiyitao/Documents/\u89c2\u6f9c\u9601/TF_Gene_Interaction_Prediction/src/GAE.py",
+    "codePathLocal": "src/GAE.py",
+    "codePath": "src/GAE.py",
+    "git": {
+        "remote": "https://github.com/CaiYitao/TF_Gene_Interaction_Prediction.git",
+        "commit": "cd8ccc786f3f804db10ee726a28aaedad6e22054"
+    },
+    "email": "yitaoc.aibio@gmail.com",
+    "root": "/Users/caiyitao/Documents/\u89c2\u6f9c\u9601/TF_Gene_Interaction_Prediction",
+    "host": "caiyitaodeMacBook-Pro.local",
+    "username": "caiyitao",
+    "executable": "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/bin/python",
+    "cpu_count": 11,
+    "cpu_count_logical": 11,
+    "cpu_freq": {
+        "current": 4056,
+        "min": 696,
+        "max": 4056
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4056,
+            "min": 696,
+            "max": 4056
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 460.4317207336426,
+            "used": 155.0461082458496
+        }
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 18.0
+    }
+}

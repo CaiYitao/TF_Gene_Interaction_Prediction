@@ -1,0 +1,73 @@
+edge_index tensor([[  901,  1482,  1632,  ...,  7939,  8086,  8258],
+        [    0,     0,     0,  ..., 13133, 13133, 13133]])
+edge_index shape torch.Size([2, 82068])
+device mps
+/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:60: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch_geometric/deprecation.py:13: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+Validation Loss: 0.6932
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Epoch 5/30, Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Epoch 10/30, Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Epoch 15/30, Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Epoch 20/30, Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Epoch 25/30, Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Validation Loss: 0.6931
+Epoch 30/30, Loss: 0.6931
+Traceback (most recent call last):
+  File "/Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/src/GAE.py", line 213, in <module>
+    model = GAEModel(in_channels=1, out_channels=32)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/src/GAE.py", line 167, in predict_edge_labels
+    print('binary_predictions shape',binary_predictions.shape)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/src/GAE.py", line 24, in encode
+    x = F.relu(self.conv1(x, edge_index))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch_geometric/nn/conv/gcn_conv.py", line 181, in forward
+    x = self.lin(x)
+        ^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/aibio/lib/python3.12/site-packages/torch_geometric/nn/dense/linear.py", line 102, in forward
+    return F.linear(x, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Tensor for argument input is on cpu but expected on mps

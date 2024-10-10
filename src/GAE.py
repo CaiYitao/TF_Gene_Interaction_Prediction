@@ -74,8 +74,11 @@ def train(model, dataset, num_epochs=6):
 
     # Train the model
     for epoch in range(num_epochs):
+
         model.train()
+        model.to(device)
         for data in train_loader:
+            data.to(device)
             optimizer.zero_grad()
             edge_predictions = model(data.x, data.edge_index).squeeze()
             
@@ -96,7 +99,12 @@ def train(model, dataset, num_epochs=6):
 
         if (epoch + 1) % 5 == 0:
             print(f'Epoch {epoch+1}/{num_epochs}, Loss: {loss.item():.4f}')
-            
+        if torch.backends.mps.is_available():
+            memory = torch.mps.current_allocated_memory()
+            wandb.log({"current MPS memory": memory/1024**3})
+            driver_mem = torch.mps.driver_allocated_memory()
+            wandb.log({"driver MPS memory": driver_mem/1024**3})
+
 
     return model
 
@@ -105,6 +113,7 @@ def evaluate(model, criterion, val_loader):
     val_loss = 0
     with torch.no_grad():
         for data in val_loader:
+            data.to(device)
             edge_predictions = model(data.x, data.edge_index).squeeze()
             
             # Use current predictions as soft labels for the next epoch
@@ -145,11 +154,13 @@ def predict_edge_labels(model, test_dataset,classification='threshold'):
     predicted_edge_labels = []
 
     for data in loader:
+        data.to(device)
         # data = data[0] 
         # print('data',data)
         # print('data[1]',data[1]) # Extract single Data object from batch if DataLoader is used
         with torch.no_grad():
             if classification== 'threshold':
+                
                 edge_predictions = model(data.x, data.edge_index).squeeze()
                 # binary_predictions = (edge_predictions > 0.5).float()
                 threshold = estimate_threshold_from_distribution(edge_predictions)
@@ -188,22 +199,29 @@ def predict_edge_labels(model, test_dataset,classification='threshold'):
 
   #main
 if __name__ == "__main__":
-    wandb.init(project="GAE")
+    # wandb.init(project="GAE")
     
     dataset = load_data('data/expression_matrix.csv', 'data/suberites_presence_absence.csv')
     # loader = create_pyg_loader(data_list,batch_size=50)
+    import os
+    import time
+    device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
+    print('device',device)
+    date = time.strftime("%Y-%m-%d-%H-%M", time.localtime())
 
+    current_path = os.getcwd()
     num_epochs = 30
                                      
     model = GAEModel(in_channels=1, out_channels=32)
-    
-    model = train(model, dataset[5:100],num_epochs)
-    # torch.save(model.state_dict(), 'model/model.pth')
 
-    predicted_edge_labels = predict_edge_labels(model, dataset[:5],classification='cluster')
+    model = train(model, dataset[20:],num_epochs)
+    torch.save(model.state_dict(), os.path.join(current_path,f'model/model_{num_epochs}_{date}.pth'))
+    # model.load_state_dict(torch.load(os.path.join(current_path,'model/model_30_2024-10-09-19-51.pth')))
+    # model.to(device)
+    predicted_edge_labels = predict_edge_labels(model, dataset[:20],classification='cluster')
     print('predicted_edge_labels shape for test dataset',predicted_edge_labels.shape)
     #save predicted_edge_labels as csv
-    pd.DataFrame(predicted_edge_labels.cpu().detach().numpy(), columns=['predicted_edge_labels']).to_csv('predicted_edge_labels.csv', index=False)
+    pd.DataFrame(predicted_edge_labels.cpu().detach().numpy(), columns=['predicted_edge_labels']).to_csv(os.path.join(current_path,f'predicted_edge_labels_{num_epochs}_{date}.csv'), index=False)
     print('1 predicted_edge_labels ',predicted_edge_labels[0:10])
     print('predicted_label shape', predicted_edge_labels.shape  )
 

@@ -1,0 +1,29 @@
+2024-10-09 19:51:29,128 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Current SDK version is 0.17.3
+2024-10-09 19:51:29,128 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Configure stats pid to 6199
+2024-10-09 19:51:29,128 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Loading settings from /Users/caiyitao/.config/wandb/settings
+2024-10-09 19:51:29,128 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Loading settings from /Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/wandb/settings
+2024-10-09 19:51:29,128 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/GAE.py', 'program_abspath': '/Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/src/GAE.py', 'program': '/Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/src/GAE.py'}
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_init.py:_log_setup():520] Logging user logs to /Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/wandb/run-20241009_195129-kcsc9x23/logs/debug.log
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_init.py:_log_setup():521] Logging internal logs to /Users/caiyitao/Documents/观澜阁/TF_Gene_Interaction_Prediction/wandb/run-20241009_195129-kcsc9x23/logs/debug-internal.log
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_init.py:init():560] calling init triggers
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2024-10-09 19:51:29,129 INFO    MainThread:6199 [wandb_init.py:init():610] starting backend
+2024-10-09 19:51:29,130 INFO    MainThread:6199 [wandb_init.py:init():614] setting up manager
+2024-10-09 19:51:29,134 INFO    MainThread:6199 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2024-10-09 19:51:29,136 INFO    MainThread:6199 [wandb_init.py:init():622] backend started and connected
+2024-10-09 19:51:29,140 INFO    MainThread:6199 [wandb_init.py:init():711] updated telemetry
+2024-10-09 19:51:29,160 INFO    MainThread:6199 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-10-09 19:51:29,619 INFO    MainThread:6199 [wandb_run.py:_on_init():2402] communicating current version
+2024-10-09 19:51:29,707 INFO    MainThread:6199 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.18.3 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-10-09 19:51:29,709 INFO    MainThread:6199 [wandb_init.py:init():795] starting run threads in backend
+2024-10-09 19:51:30,916 INFO    MainThread:6199 [wandb_run.py:_console_start():2380] atexit reg
+2024-10-09 19:51:30,917 INFO    MainThread:6199 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-10-09 19:51:30,917 INFO    MainThread:6199 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-10-09 19:51:30,917 INFO    MainThread:6199 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-10-09 19:51:30,918 INFO    MainThread:6199 [wandb_init.py:init():838] run started, returning control to user process
+2024-10-09 20:42:43,371 WARNING MsgRouterThr:6199 [router.py:message_loop():77] message_loop has been closed
